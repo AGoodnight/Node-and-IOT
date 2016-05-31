@@ -1,8 +1,8 @@
 (function(){
 	"use strict"
 
-	const app = require('./app.js');
 	const config = require('./server_config.js');
+	const io = require('./server_socket.js');
 	const mosca = require('mosca');
 	const StringDecoder = require('string_decoder').StringDecoder;
 	const AWS = require('aws-sdk');
@@ -17,11 +17,9 @@
 	let mongoCollection = "jessica";
 	let mongoPublishIP = "mongodb://"+brokerIP+":"+mongoPort+"/"+mongoCollection;
 	let mongoURL = 'mongodb://'+mongoIP+':'+mongoPort+'/'+mongoCollection;
+	let _moscaLED = 7;
 	let decoder = new StringDecoder('utf8');
 	let awsRegion = 'us-east-1';
-
-	//let _moscaLED = 21;
-	//let _publishingLED = 20;
 
 	// ------------ MQTT -------------
 	// ===============================
@@ -111,13 +109,37 @@
 	  console.log('- clientDisconnected : ', client.id);
 	});
 
+	
+	// SOCKET IO
+	// -------------------------
+
+	io.on('connection',function(socket){
+		
+		socket.on('subscribe',function(data){
+			console.log('Subscribing to websocket');
+			socket.join(data,topic);
+			mqtt_client.subscribe(data.topic);
+		});
+
+		socket.on('publish',function(data){
+			console.log('Publishing to websocket');
+			socket.join(data,topic);
+			mqtt_client.publish(data.topic,data.payload);
+		});
+
+	});
+
+	mqtt_client.on('message', function (topic, payload, packet) {
+	    console.log(topic+'='+payload);
+	    io.sockets.emit('mqtt',{'topic':String(topic),
+					            'payload':String(payload)});
+	});
 
 
 	// HELPERS
 	function publishTopic(packet,client,cb,newID){
 
-		console.log('AWS Inactive, not publishing to remote');
-		/*if(decoder.write(packet.topic).indexOf('$SENSOR') > -1 ||
+		if(decoder.write(packet.topic).indexOf('$SENSOR') > -1 ||
 			decoder.write(packet.topic).indexOf('$DEVICE') > -1 ){
 
 			let timestamp = moment().format('LLLL');
@@ -141,10 +163,8 @@
 			});
 			console.log('Published: ', packet.topic,' ||| ', decoder.write(packet.payload));
 		}else{
-		}*/
+		}
 	}
-
-	app.listen(config.FEport);
 
 	module.exports = mosca_server;
 
