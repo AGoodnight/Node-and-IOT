@@ -45,3 +45,7 @@ NodeJS to IOT Lessons
 <p>We will build an MQTT Network, MQTT
 Sync Mosquito Broker (node) on a Raspberry Pi with AWS IOT and a Dynamo Database. Mosquito Client on Ethernet board - collects multiple client messages, and sends them to the raspberry. ( c++ ). Mosquito Client on Sensor Spike sends mutt information to ethernet board. ( c++ )
 </p>
+
+<h5>Lesson 7</h5>
+<p>We will expand upon Lesson 6 and integrate websockets to have the frontend update on every message.
+</p>
