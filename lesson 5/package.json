@@ -1,0 +1,15 @@
+{
+  "name": "jessica_rabbit",
+  "version": "1.0.0",
+  "description": "An MQTT sample.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mosca": "1.2.0",
+    "mqtt": "1.8.0"
+  }
+}

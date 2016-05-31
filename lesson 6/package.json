@@ -1,0 +1,22 @@
+{
+  "name": "jessica_bot",
+  "version": "1.0.0",
+  "description": "An MQTT sample.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "2.3.11",
+    "express": "4.13.4",
+    "moment": "2.13.0",
+    "mongodb": "2.1.19",
+    "mosca": "1.2.0",
+    "mqtt": "1.8.0",
+    "pi-gpio": "0.0.8",
+    "socket.io": "1.4.5",
+    "string_decoder": "0.10.31"
+  }
+}

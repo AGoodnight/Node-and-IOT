@@ -1,0 +1,25 @@
+{
+  "name": "web_socket_basic",
+  "version": "0.0.1",
+  "description": "we will explore web socket's and socket.io",
+  "main": "index.js",
+  "scripts": {
+    "test": "node socket.js run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AGoodnight/lessons.git"
+  },
+  "author": "Adam Goodnight",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AGoodnight/lessons/issues"
+  },
+  "homepage": "https://github.com/AGoodnight/lessons#readme",
+  "dependencies": {
+    "bluebird": "3.3.5",
+    "promise": "7.1.1",
+    "q": "1.4.1",
+    "socket.io": "1.4.5"
+  }
+}

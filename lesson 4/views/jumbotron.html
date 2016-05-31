@@ -1,0 +1,10 @@
+<section class='jumbotron'>
+	<h2>{{vm.title}}</h2>
+	<p>{{vm.description}}</p>
+	<div class='input-group' ng-if='vm.showInput'>
+		<label>
+			<b>Socket Open:</b>{{vm.inputModel}}
+			<input type='checkbox' ng-model='vm.inputModel.socketActive'></input>
+		</label>
+	</div>
+</section>

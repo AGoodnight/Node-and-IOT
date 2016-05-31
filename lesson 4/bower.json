@@ -1,0 +1,23 @@
+{
+  "name": "lesson4",
+  "description": "we will hook up angular to express",
+  "main": "app.js",
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "https://github.com/AGoodnight/lessons",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "~2.2.0",
+    "angular-ui-router": "~0.2.18",
+    "bootstrap": "~3.3.6",
+    "text": "~2.0.14",
+    "angular": "~1.5.5",
+    "jquery": "~2.2.3"
+  }
+}
