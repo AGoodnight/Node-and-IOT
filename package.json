@@ -1,0 +1,38 @@
+{
+  "name": "motion_cam_node",
+  "version": "1.0.0",
+  "description": "NodeJS to IOT Lessons =======",
+  "main": "index.js",
+  "dependencies": {
+    "aws-sdk": "2.3.11",
+    "chokidar": "1.4.3",
+    "express": "4.13.4",
+    "hapi": "13.4.1",
+    "inert": "4.0.0",
+    "johnny-five": "0.9.49",
+    "mosca": "1.2.0",
+    "mows": "0.0.6",
+    "mqtt": "1.8.0",
+    "mqtt-ws": "0.2.0",
+    "node-static": "0.7.7",
+    "node-watch": "0.3.5",
+    "raspicam": "0.2.13",
+    "rpi-gpio": "0.7.0",
+    "socket.io": "1.4.5",
+    "string_decoder": "0.10.31"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AGoodnight/Node-and-IOT.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AGoodnight/Node-and-IOT/issues"
+  },
+  "homepage": "https://github.com/AGoodnight/Node-and-IOT#readme"
+}

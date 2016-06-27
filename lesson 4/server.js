@@ -8,8 +8,8 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser')
 const socketio = require('socket.io');
 
-var app = express();
-var io = socketio();
+let app = express();
+let io = socketio();
 app.io = io;
 
 const routes = require('./routes/index');//(io);
@@ -23,7 +23,6 @@ app.io.on('myEvent',function(data){
 	console.log('-------------> My event fired');
 });
 
-app.set('port', process.env.PORT || 7070);
 app.use('/',express.static(__dirname));
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))

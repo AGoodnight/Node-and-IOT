@@ -16,6 +16,7 @@
     "mosca": "1.2.0",
     "mqtt": "1.8.0",
     "pi-gpio": "0.0.8",
+    "rpi-gpio": "0.7.0",
     "socket.io": "1.4.5",
     "string_decoder": "0.10.31"
   }

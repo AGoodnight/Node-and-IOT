@@ -3,13 +3,13 @@
 require.config({
   waitSeconds: 20000,
   paths: {
-    "jquery":'../bower_components/jquery/dist/jquery.min',
-    'text':'../bower_components/text/text',
-    'angular': '../bower_components/angular/angular',
-    'ui-router': '../bower_components/angular-ui-router/release/angular-ui-router',
-    'bootstrap': '../bower_components/bootstrap/dist/js/bootstrap',
-    'chartjs':'../bower_components/Chart.js/dist/chart',
-    'socketio':'../bower_components/socket-io/build/library'
+    "jquery":'./bower_components/jquery/dist/jquery.min',
+    'text':'./bower_components/text/text',
+    'angular': './bower_components/angular/angular',
+    'ui-router': './bower_components/angular-ui-router/release/angular-ui-router',
+    'bootstrap': './bower_components/bootstrap/dist/js/bootstrap',
+    'chartjs':'./bower_components/chart.js/dist/Chart',
+    'socketio':'./bower_components/socket-io/build/library'
   },
   shim:{
     "angular":{
@@ -43,7 +43,7 @@ define('host',{
   local:'http://localhost:7070',
   jessica:'192.168.1.79',
   home:'192.168.1.66',
-  rbn:'192.168.77.176',
+  rbn:'192.168.77.171',
   port_mqtt:1883,
   port_websocket:8080,
   port_fe:8080

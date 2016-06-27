@@ -5,10 +5,17 @@
 	const path    = require("path");
 	const fs = require('fs');
 	const AWS = require('aws-sdk');
+	const rpi = require('rpi-gpio');
+
 
 	let awsRegion = 'us-east-1';
 	let dynamo = new AWS.DynamoDB.DocumentClient({region: awsRegion});
 	let app = express();
+
+	// GPIO Setup
+	// ----------------------
+	rpi.setMode(rpi.MODE_BCM);
+	rpi.setup(19,rpi.DIR_OUT);
 
 	// Express Setup
 	// ----------------------
@@ -25,23 +32,27 @@
 
 	app.get('/',(req,response)=>{
 		response.sendFile(path.join(__dirname+'/static/index.html'));
+
 	});
 
 	app.get('/api/lenny',(req,response)=>{
 		let params = {
-			TableName:"Jess",
-			IndexName:"topic-index",
+			TableName:"jessica",
+			IndexName:"client-timestamp-index",
 			KeyConditions:{
-				topic:{
+				client:{
 					ComparisonOperator:"EQ",
 					AttributeValueList: [
-				        "$DEVICE/Lenny/gas"
+				        "Lenny"
 			        ]
 				}
 			}
 		};	
 
 		dynamo.query(params,(err,data)=>{
+
+			onAPILog(err,data,req.url);
+			
 			response.send({
 				title:"Lenny",
 				description:"I detect gas",
@@ -53,19 +64,22 @@
 	app.get('/api/barry',(req,response)=>{
 
 		let params = {
-			TableName:"Jess",
-			IndexName:"topic-index",
+			TableName:"jessica",
+			IndexName:"client-timestamp-index",
 			KeyConditions:{
-				topic:{
+				client:{
 					ComparisonOperator:"EQ",
 					AttributeValueList: [
-				        "$SENSOR/office/plant/environment"
+				        "Barry"
 			        ]
 				}
 			}
 		};	
 
 		dynamo.query(params,(err,data)=>{
+
+			onAPILog(err,data,req.url);
+
 			response.send({
 				title:"Barry",
 				description:"I watch over a plant, see below",
@@ -78,27 +92,45 @@
 	app.get('/api/snoopy',(req,response)=>{
 
 		let params = {
-			TableName:"Jess",
-			IndexName:"topic-index",
+			TableName:"jessica",
+			IndexName:"client-timestamp-index",
 			KeyConditions:{
-				topic:{
+				client:{
 					ComparisonOperator:"EQ",
 					AttributeValueList: [
-				        "$DEVICE/Snoopy/environment"
+				        "Snoopy"
 			        ]
 				}
 			}
 		};	
 
 		dynamo.query(params,(err,data)=>{
+			
+			onAPILog(err,data,req.url);
+
 			response.send({
 				title:"I am snoopy",
 				description:"I take care of a plant",
 				items:data.Items
 			});
+
 		});
 		
 	});
+
+	function onAPILog(err,data,endpoint){
+		
+		rpi.write(19,true);
+		setTimeout(1000,rpi.write(19,false))
+
+		if(err){
+			console.log("!! --> ERROR on Query for " + endpoint);
+			//console.log(err);
+		}else{
+			console.log("--> Successful Query on " + endpoint);
+			//console.log(data);
+		}
+	}
 
 
 

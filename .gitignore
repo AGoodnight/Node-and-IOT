@@ -1,4 +1,6 @@
 bower_components/
 **/bower_components
+lib
+**/lib
 node_modules/
 **/node_modules/
