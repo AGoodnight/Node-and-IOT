@@ -26,18 +26,6 @@ define(['../app','../views/views'],function(app,views){
 				}
 			}
 		})
-		.state('clients',{
-			url:'clients',
-			abstract:true,
-			controller:'AppController',
-			controllerAs:'vm',
-			template:views.layout,
-			resolve:{
-				data:function(){
-					nested:true
-				}
-			}
-		})
 		.state('admin',{
 			url:'admin',
 			abstract:true,
@@ -49,13 +37,12 @@ define(['../app','../views/views'],function(app,views){
 					nested:true
 				}
 			}
-		})/*
+		})
 		.state('lenny',{
-			parent:'clients',
 			url:'/lenny',
 			controller:'AppController',
 			controllerAs:'vm',
-			template:views.chart,
+			template:views.layout,
 			resolve:{
 				data:function(){
 					console.log('UI ROUTER - connecting to server');
@@ -66,11 +53,10 @@ define(['../app','../views/views'],function(app,views){
 			}
 		})
 		.state('barry',{
-			parent:'clients',
 			url:'/barry',
 			controller:'AppController',
 			controllerAs:'vm',
-			template:views.chart,
+			template:views.layout,
 			resolve:{
 				data:function(){
 					console.log('UI ROUTER - connecting to server');
@@ -81,11 +67,10 @@ define(['../app','../views/views'],function(app,views){
 			}
 		})
 		.state('snoopy',{
-			parent:'clients',
 			url:'/snoopy',
 			controller:'AppController',
 			controllerAs:'vm',
-			template:views.chart,
+			template:views.layout,
 			resolve:{
 				data:function(){
 					console.log('UI ROUTER - connecting to server');
@@ -94,6 +79,6 @@ define(['../app','../views/views'],function(app,views){
 					}
 				}
 			}
-		});*/
+		});
 	};
 })

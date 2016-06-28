@@ -41,7 +41,7 @@
 		port:config.MQTTport,
 		backend:database,
 		logger:{
-			level:'debug'
+			//level:'debug'
 		},
 		persistence: {
 		    factory: mosca.persistence.Memory

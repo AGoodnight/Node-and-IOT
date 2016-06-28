@@ -23,7 +23,7 @@ define(['../app','../views/views'],function(app,views){
 					
 					if(now !== undefined && now.items !== undefined){
 						scope.dataset = scope.vm.data;
-						console.log(scope.vm.data)
+						//console.log(scope.vm.data)
 						
 						if(scope.dataset.items){
 
@@ -54,7 +54,7 @@ define(['../app','../views/views'],function(app,views){
 								};
 
 								newSet.push(markup);
-								console.log(newSet);
+								//console.log(newSet);
 
 							});
 
@@ -68,7 +68,10 @@ define(['../app','../views/views'],function(app,views){
 							var ctx = element.find('.ctx');
 							var mychart = new Chart(ctx,{
 								type:scope.type,
-								data:scope.chartData
+								data:scope.chartData,
+								options:{
+									animation:false
+								}
 							});
 						}
 					}
@@ -90,7 +93,7 @@ define(['../app','../views/views'],function(app,views){
 		    			if(values[stat] === undefined){
 		    				values[stat] = [];
 		    			}
-		    			console.log(json)
+		    			//console.log(json)
 		    			values[stat].push( parseInt(json[stat]) );
 			    	}
 			    }

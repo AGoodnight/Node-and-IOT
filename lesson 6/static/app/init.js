@@ -1,8 +1,7 @@
 define(['host',
 		'./app.controller',
 	    './button-bar.directive',
-	    './jumbotron.directive',
-	    './chart.directive'],function(host){
+	    './jumbotron.directive'],function(host){
 
 	function init(){
 	    

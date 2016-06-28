@@ -1,15 +1,19 @@
 // RequireJS Configuration
+var  __bowerdir = '../bower_components/';
+var __nodedir = '../node_modules/';
 
 require.config({
   waitSeconds: 20000,
   paths: {
-    "jquery":'./bower_components/jquery/dist/jquery.min',
-    'text':'./bower_components/text/text',
-    'angular': './bower_components/angular/angular',
-    'ui-router': './bower_components/angular-ui-router/release/angular-ui-router',
-    'bootstrap': './bower_components/bootstrap/dist/js/bootstrap',
-    'chartjs':'./bower_components/chart.js/dist/Chart',
-    'socketio':'./bower_components/socket-io/build/library'
+    'jquery':__bowerdir+'jquery/dist/jquery.min',
+    'text':__bowerdir+'text/text',
+    'angular': __bowerdir+'angular/angular',
+    'ui-router': __bowerdir+'angular-ui-router/release/angular-ui-router',
+    'bootstrap': __bowerdir+'bootstrap/dist/js/bootstrap',
+    'chartjs':__bowerdir+'chart.js/dist/Chart',
+    //'angular-websocket':__bowerdir+'angular-websocket/dist/angular-websocket'//,
+    'ws':__nodedir+'ws/lib/WebSocket',
+    'underscore':__bowerdir+'underscore/underscore-min'
   },
   shim:{
     "angular":{
@@ -28,9 +32,12 @@ require.config({
       deps:['jquery'],
       exports:"chartjs"
     },
-    "socketio":{
-      deps:['jquery'],
-      exports:"socketio"
+    // "angular-websocket":{
+    //   deps:['jquery','angular'],
+    //   exports:"angular-websocket"
+    // }
+    "ws":{
+      exports:'ws'
     }
   }
 });
@@ -67,7 +74,7 @@ require([
     'bootstrap',
     'text',
     'chartjs',
-    'socketio'
+    'underscore'
 
 ], function(app,init){
     'use strict';

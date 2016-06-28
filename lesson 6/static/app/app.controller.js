@@ -2,15 +2,16 @@ define(['../app','host','hostname'],function(app,host,hostname){
 	
 	app.module.controller('AppController',init);
 	
-	init.$inject = ['$http','data'];
+	init.$inject = ['$http','data','$interval'];
 	
-	function init($http,data){
+	function init($http,data,$interval){
 
 		//console.log($state.get());
 
 		console.log('VM INIT',data);
 		
 		var vm = this, apiGet;
+		var apiData;
 		//var socket = io.connect();
 
 		if(data && data.apiEndpoint){
@@ -30,10 +31,31 @@ define(['../app','host','hostname'],function(app,host,hostname){
 			vmConfigure();
 		}
 
+		function refreshData(){
+			
+			var _newData;
+
+			$http({
+				method:'GET',
+				url:'api/'+vm.data.client
+			}).then(success,failure);
+
+			function success(response){
+				vm.data = response.data;
+			}
+
+			function failure(response){
+				console.log("Failed to refresh data");
+			}
+
+		}
+
 		function vmConfigure(response){
 
-			var apiData = response || {};
+			apiData = response || {};
 			apiData = apiData.data || {};
+
+			console.log(apiData.title)
 
 			vm.topic = "$DEVICE/Lenny/hello";
 			vm.title = apiData.title || "Lenny";
@@ -41,21 +63,13 @@ define(['../app','host','hostname'],function(app,host,hostname){
 			vm.showInput = ( apiData.active !== undefined );
 			vm.tag = apiData.tag;
 			vm.active = apiData.active || false;
-			vm.inputModel = {
-				socketActive:vm.active
-			};	
 
 			if(data){
 				vm.nested = data.nested || false;
 			}
 
-			//console.log("App Controller, vmConfigure: ", arguments);
-			//console.log('App Controller is establishing connection to: ','ws://'+hostname+':'+host.port_fe);
-
-			//console.log( socket.emit('subscribe',{topic:'$DEVICE/Lenny/test'}) );
-
 			vm.buttons = [
-				/*{
+				{
 					name:'Lenny',
 					where:'lenny'
 				},
@@ -66,13 +80,11 @@ define(['../app','host','hostname'],function(app,host,hostname){
 				{
 					name:'Barry',
 					where:'barry'
-				}*/
+				}
 			];
-			// For Charts
-            vm.data = apiData;
-            console.log(vm.data);
 
-            console.log('VM COnfigured');
+            vm.data = apiData;
+            $interval(refreshData,500);
       
 		}
 	}
