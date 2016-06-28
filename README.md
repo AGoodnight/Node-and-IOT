@@ -1,6 +1,8 @@
 NodeJS to IOT Lessons
 =======
 
+* As with any good Repo, the most up to date code is in the 'develop' branch.
+
 <h5>Lesson 0</h5>
 <p>We will develop a module that watches for a directories contents to change. Once it detects a change it will emit an event that will set update a text file. This text file will list the names of all the files in the directory. So when the directory changes, the file also updates.</p>
 
