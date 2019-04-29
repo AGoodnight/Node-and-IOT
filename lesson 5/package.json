@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mosca": "1.2.0",
+    "mosca": ">=2.8.2",
     "mqtt": "1.8.0"
   }
 }
